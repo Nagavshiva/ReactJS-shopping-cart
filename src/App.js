@@ -1,24 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/Navbar';
+import DataStore from './context/ContextState';
+import Banner from './components/Banner';
+import Cart from './components/Cart';
+import Footer from './components/Footer';
+import {  HashRouter as Router, Routes, Route } from "react-router-dom";
+import CartItems from './components/CartItems';
+
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <DataStore>
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Banner />} />
+            <Route path="/items" element={<CartItems />} />
+            <Route path="/" element={<CartItems />} />
+          </Routes>
+          <Footer />
+        </Router>
+      </DataStore>
+
+
+    </>
   );
 }
 
